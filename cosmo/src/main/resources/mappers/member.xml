@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cosmo.web.common.mapper.AccountMapper">
+	<insert id="register" parameterType="com.cosmo.web.common.domain.Account">
+		INSERT INTO member (
+			email,
+			username, 
+			pw, 
+			phonenum,
+			privilege,
+			insertdatetime,
+			updatedatetime
+		) values(
+			#{email},
+			#{userName},
+			#{pw},
+			#{phoneNum},
+			"member",
+			now(),
+			now()
+		)
+	</insert>
+	
+	<!-- <update id="editUserInfo" parameterType="com.gss.web.common.domain.Member">
+		update gssusertab 
+		set email=#{email},
+			userpassword=#{userPassword},
+			userphone=#{userPhone},
+			username=#{userName}
+		where gssuserid=#{gssuserId}	
+	</update> -->
+	
+	
+	<select id="countEmail" parameterType="String" resultType="int">
+		select count(member_seq)
+		from member 
+		where email=#{email}
+	</select>
+	
+	<select id="countPhoneNum" parameterType="String" resultType="int">
+		select count(member_seq)
+		from member 
+		where phonenum=#{phoneNum}
+	</select>
+	
+	<select id="findByAccount" parameterType="String" resultType="com.cosmo.web.common.domain.Account">
+		select
+			member_seq as userSeq,
+			email,
+			username, 
+			pw, 
+			phonenum,
+			privilege,
+			insertdatetime,
+			updatedatetime
+		from member
+		where email = #{email} 
+	</select>
+	
+</mapper>
