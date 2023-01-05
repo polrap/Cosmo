@@ -31,7 +31,7 @@ public class RegisterController {
 	
 	@PostMapping(value="/register")
 	public ModelAndView postRegist(@ModelAttribute("MemberVO") MemberVO memberVO) {
-		ModelAndView mv= new ModelAndView();
+		ModelAndView mv= new ModelAndView(); 
 
 		Account account = new Account(memberVO);
 		account.setPw(passwordEncoder.encode(account.getPw()));
