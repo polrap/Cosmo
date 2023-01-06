@@ -16,4 +16,5 @@ public interface AccountService {
 	int countPhoneNum(String phoneNum);
 	
 	int register(Account account);
+	
 }

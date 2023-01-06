@@ -9,6 +9,21 @@
 <meta charset="UTF-8">
 </head>
 <body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+    $(document).ready(function(){
+        Kakao.init('72555b8e71792babb4e278a1e060a44c');
+        Kakao.isInitialized();
+    });
+
+    function loginWithKakao() {
+        Kakao.Auth.authorize({ 
+        redirectUri: 'http://localhost:8080/cosmo/login/kakao' 
+        }); // 등록한 리다이렉트uri 입력
+    }
+</script>
+	
 	<div class="container" style="width: 50%;">
 			<form:form modelAttribute="MemberVO" method="POST">
 				<div class="form-group col-lg-12">
@@ -87,7 +102,12 @@
 						type="button" onclick="joinCancle()" value="취소">
 				</div>
 			</div>
+			
 			</form:form>
+			<div class="col-lg-12 text-center mt-3">
+   				<button class="btn btn-block waves-effect waves-light btn-rounded btn-outline-info mb-3">로그인하기</button>
+				<img alt="카카오로그인" src="${pageContext.request.contextPath}/resources/assets/img/kakao_login_medium_wide.png" onclick="loginWithKakao()">
+			</div>
 		</div>
 </body>
 </html>
